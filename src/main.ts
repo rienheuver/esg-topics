@@ -2,6 +2,7 @@ import ELK, { ElkNode } from "elkjs/lib/elk.bundled";
 import Konva from "konva/lib/Core";
 import { Layer } from "konva/lib/Layer";
 import { KonvaEventObject } from "konva/lib/Node";
+import { Stage } from "konva/lib/Stage";
 import { Tween } from "konva/lib/Tween";
 import { Line } from "konva/lib/shapes/Line";
 import { read, utils } from "xlsx";
@@ -26,7 +27,7 @@ window.addEventListener("load", async () => {
 
   stage.on("wheel", (e) => zoom(e, stage));
   stage.on("dragmove", () => drawGrid(gridLayer, stage));
-  window.addEventListener("resize", (e) => resize(stage));
+  window.addEventListener("resize", () => resize(stage));
   const layer = new Layer();
   const gridLayer = new Layer({ id: "grid" });
   stage.add(gridLayer, layer);
@@ -41,7 +42,7 @@ window.addEventListener("load", async () => {
 
   // const root = new Entity("ESRS", { isRoot: true });
   // entities.push(root);
-  let lastTopic;
+  let lastTopic: Entity;
   let topicCounter = 0;
   let subCounter = 0;
   let subsubCounter = 0;
@@ -60,9 +61,9 @@ window.addEventListener("load", async () => {
       entities.push(lastTopic);
       if (row.Subtopic) {
         row.Subtopic.split(",")
-          .map((s) => s.trim())
-          .filter((s) => s.length)
-          .forEach((s) => {
+          .map((s: string) => s.trim())
+          .filter((s: string) => s.length)
+          .forEach((s: string) => {
             const sub = new Entity(s, {
               connections: [lastTopic],
             });
@@ -70,9 +71,9 @@ window.addEventListener("load", async () => {
             entities.push(sub);
             if (row.Subsubtopic) {
               row.Subsubtopic.split(",")
-                .map((s) => s.trim())
-                .filter((s) => s.length)
-                .forEach((s) => {
+                .map((s: string) => s.trim())
+                .filter((s: string) => s.length)
+                .forEach((s: string) => {
                   const subsub = new Entity(s, {
                     connections: [sub],
                   });
@@ -85,9 +86,9 @@ window.addEventListener("load", async () => {
     } else {
       if (lastTopic && row.Subtopic) {
         row.Subtopic.split(",")
-          .map((s) => s.trim())
-          .filter((s) => s.length)
-          .forEach((s) => {
+          .map((s: string) => s.trim())
+          .filter((s: string) => s.length)
+          .forEach((s: string) => {
             const sub = new Entity(s, {
               connections: [lastTopic],
             });
@@ -95,9 +96,9 @@ window.addEventListener("load", async () => {
             entities.push(sub);
             if (row.Subsubtopic) {
               row.Subsubtopic.split(",")
-                .map((s) => s.trim())
-                .filter((s) => s.length)
-                .forEach((s) => {
+                .map((s: string) => s.trim())
+                .filter((s: string) => s.length)
+                .forEach((s: string) => {
                   const subsub = new Entity(s, {
                     connections: [sub],
                   });
@@ -180,7 +181,7 @@ async function layoutElk(ease = false) {
     id: "root",
     layoutOptions: {
       // "elk.direction": "DOWN",
-      "elk.layered.spacing.nodeNodeBetweenLayers": 100,
+      "elk.layered.spacing.nodeNodeBetweenLayers": "100",
     },
     children: [],
     edges: [],
