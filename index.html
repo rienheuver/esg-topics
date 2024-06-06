@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESG topics</title>
+  </head>
+  <body>
+    <div class="canvas-container"></div>
+    <!-- <div class="toolbar">
+      <button class="material-icons discrete" id="open-import">
+        upload_file
+      </button>
+      <button
+        class="material-icons discrete"
+        id="autolayout"
+        data-tooltip="Automatisch indelen"
+      >
+        account_tree
+      </button>
+    </div> -->
+    <div popover="auto" id="entity-popover">
+      <h5>Basisgegevens</h5>
+      <table></table>
+    </div>
+    <div class="backdrop">
+      <div class="modal">
+        <div class="modal-heading">
+          <h3>Importeer dossier</h3>
+          <button class="material-icons discrete">close</button>
+        </div>
+        <div class="modal-body">
+          <input type="file" name="import-file" id="import-file" />
+          <input type="button" value="Importeren" />
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

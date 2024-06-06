@@ -1,0 +1,144 @@
+@import "@riskchallenger/open-components/main.css";
+
+html {
+  --brand-purple: oklch(48% 0.221 315);
+  --brand-pink: oklch(58% 0.225 2);
+  --brand-violet: oklch(42% 0.208 288);
+  --brand: var(--brand-purple);
+  --default-radius: var(--radius-1);
+}
+
+body {
+  overflow: hidden;
+}
+
+h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 20vw;
+  transform: rotateZ(-20deg);
+  translate: -50% -50%;
+  opacity: 0.1;
+  text-transform: uppercase;
+  z-index: -1;
+}
+
+h2 {
+  position: absolute;
+  left: var(--size-7);
+  top: var(--size-7);
+}
+
+.logo {
+  position: absolute;
+  top: var(--size-3);
+  right: var(--size-3);
+  background-color: var(--brand-purple);
+  padding: var(--size-3);
+  display: flex;
+  gap: var(--size-5);
+  color: white;
+  height: 70px;
+  font-size: 1.5rem;
+  align-items: center;
+
+  span {
+    height: 100%;
+    background-color: var(--gray-0);
+    width: 1px;
+  }
+
+  img {
+    max-height: 80%;
+  }
+}
+
+.toolbar {
+  position: absolute;
+  left: var(--size-3);
+  top: var(--size-12);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-0);
+  box-shadow: var(--shadow-3);
+  padding: var(--size-2);
+}
+
+[popover] {
+  font-size: 1.2rem;
+  padding: 10px;
+  animation: scale-fade-out 0.3s ease-out;
+  transform-origin: top left;
+  width: 200px;
+  height: 300px;
+
+  &.origin-tr {
+    transform-origin: top right;
+  }
+
+  &.origin-bl {
+    transform-origin: bottom left;
+  }
+
+  &.origin-br {
+    transform-origin: bottom right;
+  }
+}
+
+[popover]:popover-open {
+  animation: scale-fade-in 0.3s ease-out;
+}
+
+/* Animation keyframes */
+
+@keyframes scale-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-fade-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    /* display needed on the closing animation to keep the popover
+    visible until the animation ends */
+    display: block;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0);
+    /* display: none not required here because it is the default value
+    for a closed popover, but including it so the behavior is clear */
+    display: none;
+  }
+}
+
+@keyframes backdrop-fade-in {
+  0% {
+    background-color: rgb(0 0 0 / 0%);
+  }
+
+  100% {
+    background-color: rgb(0 0 0 / 25%);
+  }
+}
+
+.backdrop {
+  display: none;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--size-3);
+}
