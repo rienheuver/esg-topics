@@ -34,7 +34,7 @@ window.addEventListener("load", async () => {
 
   drawGrid(gridLayer, stage);
 
-  const url = "./public/esg.xlsx";
+  const url = "./esg.xlsx";
   const file = await (await fetch(url)).arrayBuffer();
 
   const workbook = read(file);
